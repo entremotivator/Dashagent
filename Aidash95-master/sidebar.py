@@ -66,7 +66,8 @@ def show_sidebar():
             {"name": "Pricing", "icon": "💰", "desc": "Service Rates"},
             {"name": "AI Chat", "icon": "🤖", "desc": "AI Assistant"},
             {"name": "Voice Calls", "icon": "📞", "desc": "Outbound Calling"},
-            {"name": "Call Center", "icon": "🎧", "desc": "Support Center"}
+            {"name": "Call Center", "icon": "🎧", "desc": "Support Center"},
+            {"name": "Project Management", "icon": "📋", "desc": "Project Tracking & Tasks"} # New page added
         ]
         
         current_page = st.session_state.get('current_page', 'Dashboard')
