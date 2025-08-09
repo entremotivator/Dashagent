@@ -21,16 +21,16 @@ def load_css():
 
 # Page mapping: keys are labels, values are relative paths inside /pages folder
 PAGE_MAPPING = {
-    "Dashboard": "pages/1_Dashboard.py",
-    "Calendar": "pages/2_Calendar.py",
-    "Invoices": "pages/3_Invoices.py",
-    "Customers": "pages/4_Customers.py",
-    "Appointments": "pages/5_Appointments.py",
-    "Pricing": "pages/6_Pricing.py",
-    "AI Chat": "pages/7_Super_Chat.py",
-    "Voice Calls": "pages/8_AI_Caller.py",
-    "Call Center": "pages/9_Call_Center.py",
-    "Project Management": "pages/10_Project_Management.py"
+    "Dashboard": "Aidash95-master/pages/1_Dashboard.py",
+    "Calendar": "Aidash95-master/pages/2_Calendar.py",
+    "Invoices": "Aidash95-master/pages/3_Invoices.py",
+    "Customers": "Aidash95-master/pages/4_Customers.py",
+    "Appointments": "Aidash95-master/pages/5_Appointments.py",
+    "Pricing": "Aidash95-master/pages/6_Pricing.py",
+    "AI Chat": "Aidash95-master/pages/7_Super_Chat.py",
+    "Voice Calls": "Aidash95-master/pages/8_AI_Caller.py",
+    "Call Center": "pages/Aidash95-master/9_Call_Center.py",
+    "Project Management": "pages/Aidash95-master/10_Project_Management.py"
 }
 
 def main():
