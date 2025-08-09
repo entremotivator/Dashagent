@@ -20,3 +20,4 @@ gspread_dataframe
 pytz
 yagmail 
 reportlab
+ebooklib
