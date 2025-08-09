@@ -21,3 +21,4 @@ pytz
 yagmail 
 reportlab
 ebooklib
+GitPython>=3.1.40
