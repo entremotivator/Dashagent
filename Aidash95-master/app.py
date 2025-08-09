@@ -19,54 +19,61 @@ def load_css():
         with open(css_file) as f:
             st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-# Main app logic
+# Page mapping: keys are labels, values are relative paths inside /pages folder
+PAGE_MAPPING = {
+    "Dashboard": "pages/1_Dashboard.py",
+    "Calendar": "pages/2_Calendar.py",
+    "Invoices": "pages/3_Invoices.py",
+    "Customers": "pages/4_Customers.py",
+    "Appointments": "pages/5_Appointments.py",
+    "Pricing": "pages/6_Pricing.py",
+    "AI Chat": "pages/7_Super_Chat.py",
+    "Voice Calls": "pages/8_AI_Caller.py",
+    "Call Center": "pages/9_Call_Center.py",
+    "Project Management": "pages/10_Project_Management.py"
+}
+
 def main():
     load_css()
     load_config()
     init_session_state()
 
-    # Debug: confirm app is loading
+    # Debug info
     st.write("🚀 App started")
-    
-    # Check login via JSON upload
+
+    # User login check
     if not st.session_state.get("logged_in", False):
         st.write("🔐 Login required")
         show_login()
+        return  # Stop execution if not logged in
+
+    st.write("✅ Logged in")
+    show_sidebar()
+
+    # Set default page
+    if "current_page" not in st.session_state:
+        st.session_state.current_page = "Dashboard"
+
+    selected_page = st.session_state.get("current_page", "Dashboard")
+
+    st.write(f"📄 Current page: {selected_page}")
+
+    # Ensure page exists before switching
+    if selected_page in PAGE_MAPPING:
+        page_path = PAGE_MAPPING[selected_page]
+        try:
+            # st.switch_page must be called before any other Streamlit commands for clean nav
+            if Path(page_path).exists():
+                st.switch_page(page_path)
+            else:
+                st.error(f"❌ Page file not found: {page_path}")
+        except st.errors.StreamlitAPIException as e:
+            st.error(f"⚠ Navigation error: {e}")
     else:
-        st.write("✅ Logged in")
-        show_sidebar()
-
-        # Set default page
-        if "current_page" not in st.session_state:
-            st.session_state.current_page = "Dashboard"
-
-        # Define available pages
-        page_mapping = {
-            "Dashboard": "pages/1_Dashboard.py",
-            "Calendar": "pages/2_Calendar.py",
-            "Invoices": "pages/3_Invoices.py",
-            "Customers": "pages/4_Customers.py",
-            "Appointments": "pages/5_Appointments.py",
-            "Pricing": "pages/6_Pricing.py",
-            "AI Chat": "pages/7_Super_Chat.py",
-            "Voice Calls": "pages/8_AI_Caller.py",
-            "Call Center": "pages/9_Call_Center.py",
-            "Project Management": "pages/10_Project_Management.py" # New page added
-        }
-
-        selected_page = st.session_state.get("current_page")
-
-        st.write(f"📄 Current page: {selected_page}")
-
-        if selected_page in page_mapping:
-            try:
-                st.switch_page(page_mapping[selected_page])
-            except Exception as e:
-                st.error(f"❌ Failed to switch page: {e}")
-        else:
-            st.warning("⚠️ Page not found. Showing fallback dashboard.")
-            st.title("📊 Dashboard (Fallback)")
-            st.info("Use the sidebar to select a valid page.")
+        st.warning("⚠️ Page not found. Showing fallback dashboard.")
+        st.title("📊 Dashboard (Fallback)")
+        st.info("Use the sidebar to select a valid page.")
 
 if __name__ == "__main__":
     main()
+
