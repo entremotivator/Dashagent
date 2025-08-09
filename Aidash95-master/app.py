@@ -50,7 +50,8 @@ def main():
             "Pricing": "pages/6_Pricing.py",
             "AI Chat": "pages/7_Super_Chat.py",
             "Voice Calls": "pages/8_AI_Caller.py",
-            "Call Center": "pages/9_Call_Center.py"
+            "Call Center": "pages/9_Call_Center.py",
+            "Project Management": "pages/10_Project_Management.py" # New page added
         }
 
         selected_page = st.session_state.get("current_page")
